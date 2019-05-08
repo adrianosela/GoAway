@@ -133,6 +133,12 @@ func (d *Detector) Status() string {
 	return d.status
 }
 
+// SnapshotJPG returns a jpg encoded byte slice containing
+// the latest image taken from the video capture device
+func (d *Detector) SnapshotJPG() ([]byte, error) {
+	return gocv.IMEncode(".jpg", d.baseImgMatrix)
+}
+
 // Close handles closing gocv resources
 func (d *Detector) Close() {
 	d.status = DetectorStatusClosed
