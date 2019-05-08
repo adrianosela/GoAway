@@ -5,6 +5,8 @@
 [![GitHub issues](https://img.shields.io/github/issues/adrianosela/GoAway.svg)](https://github.com/adrianosela/GoAway/issues)
 [![license](https://img.shields.io/github/license/adrianosela/goaway.svg)](https://github.com/adrianosela/GoAway/blob/master/LICENSE)
 
+**Complete examples can be found in the /examples subdirectory of this repository**
+
 ### Simple Usage
 
 ```

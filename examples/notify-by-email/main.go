@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/adrianosela/GoAway/detector"
 	"log"
 	"net/smtp"
 	"os"
 	"time"
+
+	"github.com/adrianosela/GoAway/detector"
 )
 
 var (
@@ -26,7 +27,6 @@ func notifyMeByEmail(snapshot []byte) error {
 }
 
 func main() {
-	var md *detector.Detector
 
 	onDetect := func() {
 		// only send at most one email per 15 seconds
