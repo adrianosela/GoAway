@@ -1,4 +1,4 @@
-package main
+package detector
 
 import (
 	"fmt"
@@ -51,16 +51,16 @@ func (d *Detector) waitForNextFrame() error {
 			return fmt.Errorf("Video Device Closed")
 		}
 		if !d.baseImgMatrix.Empty() {
-			d.status, d.statusColor  = DetectorStatusReady, statusReadyColor
+			d.status, d.statusColor = DetectorStatusReady, statusReadyColor
 			return nil
 		}
 	}
 }
 
-func (d *Detector) prepareCurFrame() {
+func (d *Detector) prepareCurrentFrame() {
 	// foreground (diff matrix) = curFrame - prevFrame
 	d.bgSubtractor.Apply(d.baseImgMatrix, &d.diffMatrix)
-	// distinguish items in foreground by distinguishing differences > 25 in RGB vals of img
+	// distinguish item edges by distinguishing differences > 25 in RGB vals of img
 	gocv.Threshold(d.diffMatrix, &d.threshMatrix, 25, 255, gocv.ThresholdBinary)
 	// transformation that produces an image that is the same shape as the
 	// original, but is a different size
@@ -109,7 +109,7 @@ func NewMotionDetector(camID int, winTitle string, onDetect func()) (*Detector, 
 		bgSubtractor:  gocv.NewBackgroundSubtractorMOG2(),
 		statusColor:   statusReadyColor,
 		status:        DetectorStatusReady,
-		onDetect: onDetect,
+		onDetect:      onDetect,
 	}, nil
 }
 
@@ -119,7 +119,7 @@ func (d *Detector) Start() error {
 		if err := d.waitForNextFrame(); err != nil {
 			return err
 		}
-		d.prepareCurFrame()
+		d.prepareCurrentFrame()
 		d.findAndDrawContours()
 		if done := d.displayResult(); done {
 			break
@@ -149,13 +149,4 @@ func (d *Detector) Close() {
 	if err := d.bgSubtractor.Close(); err != nil {
 		log.Printf("could not close background subtractor: %s", err)
 	}
-}
-
-func main() {
-	detector, err := NewMotionDetector(0, "Motion Detector", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer detector.Close()
-	log.Fatal(detector.Start())
 }
