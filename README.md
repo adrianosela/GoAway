@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/adrianosela/GoAway)](https://goreportcard.com/report/github.com/adrianosela/GoAway)
 [![Documentation](https://godoc.org/github.com/adrianosela/GoAway?status.svg)](https://godoc.org/github.com/adrianosela/GoAway)
 [![GitHub issues](https://img.shields.io/github/issues/adrianosela/GoAway.svg)](https://github.com/adrianosela/GoAway/issues)
-[![license](https://img.shields.io/github/license/adrianosela/GoAway.svg)](https://github.com/adrianosela/GoAway/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/adrianosela/goaway.svg)](https://github.com/adrianosela/GoAway/blob/master/LICENSE)
 
 ### Simple Usage
 
@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	md, err := detector.NewMotionDetector(0, "Motion Detector", func(){
+	md, err := detector.NewMotionDetector(0, "Motion Detector", func() {
 		// do this whenever motion is detected
 		// e.g. log, send yourself an email, etc...
 	})
