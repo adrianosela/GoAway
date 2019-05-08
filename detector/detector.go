@@ -128,6 +128,11 @@ func (d *Detector) Start() error {
 	return nil
 }
 
+// Status returns the status of the detector
+func (d *Detector) Status() string {
+	return d.status
+}
+
 // Close handles closing gocv resources
 func (d *Detector) Close() {
 	d.status = DetectorStatusClosed

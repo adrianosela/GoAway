@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	md, err := detector.NewMotionDetector(0, "Motion Detector", func(){
+	md, err := detector.NewMotionDetector(0, "Motion Detector", func() {
 		// do this whenever motion is detected
 		// e.g. log, send yourself an email, etc...
 	})

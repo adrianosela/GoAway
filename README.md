@@ -1,4 +1,4 @@
-# GoAway - OpenCV based motion detector written in Go
+# GoAway - An OpenCV based motion detector written in Go
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/adrianosela/GoAway)](https://goreportcard.com/report/github.com/adrianosela/GoAway)
 [![Documentation](https://godoc.org/github.com/adrianosela/GoAway?status.svg)](https://godoc.org/github.com/adrianosela/GoAway)
