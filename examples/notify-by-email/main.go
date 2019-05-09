@@ -15,7 +15,7 @@ var (
 	lastMail = time.Now().Add(-15 * time.Second)
 )
 
-func notifyMeByEmail(snapshot []byte) error {
+func notifyMeByEmail(msgData []byte) error {
 	from := os.Getenv("GMAIL_USER")
 	pass := os.Getenv("GMAIL_PASS")
 	recipients := []string{from}
@@ -23,7 +23,7 @@ func notifyMeByEmail(snapshot []byte) error {
 	smtpPort := 587
 	smtpAddr := fmt.Sprintf("%s:%d", smtpHost, smtpPort)
 	smtpAuth := smtp.PlainAuth("", from, pass, smtpHost)
-	return smtp.SendMail(smtpAddr, smtpAuth, from, recipients, snapshot)
+	return smtp.SendMail(smtpAddr, smtpAuth, from, recipients, msgData)
 }
 
 func main() {
